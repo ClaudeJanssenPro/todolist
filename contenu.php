@@ -16,10 +16,14 @@ avec le contenu html nécessaire pour avoir une checkbox.
 //   file_put_contents($file, $jsonaddtask, FILE_APPEND |LOCK_EX);
 // }
 
-$file = file_get_contents('todo.json');
-$json = json_decode($file, true); // decode the JSON into an associative array
-// var_dump($json);
-echo $json;
+// $file = file_get_contents('todo.json');
+// $json = json_decode($file, true); // decode the JSON into an associative array
+// // var_dump($json);
+// echo $json;
+
+$contenu_fichier_json = file_get_contents('./todo.json');
+$receipt = json_decode($contenu_fichier_json, true);
+// print_r($receipt);
 //
 // This will print out the contents of the array in a nice readable format. Then, you access the elements you want, like so:
 //
@@ -32,3 +36,41 @@ echo $json;
 //     // Use $field and $value here
 // }
 ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="stylesheet" href="style.css" type="text/css" charset="utf-8" />
+<title>To do</title>
+</head>
+<body>
+<div class="container">
+<form action="" method="POST" name="formulaire" id="formulaire">
+<fieldset>
+<h3>A faire</h3>
+<ul id="incomplete-tasks">
+<li><input type="checkbox" name="todo" value="todo1"><label>Faire les courses</label><input type="text"><button class="edit">Modifier</button><button name="delete" type="submit" form="formulaire" class="delete">Supprimer</button></li>
+<li class="editMode"><input type="checkbox" name="todo" value="todo2"><label>Terminer le projet "QCM"</label><input type="text" value="Terminer le projet 'QCM'"><button name="edit" type="submit" form="formulaire" class="edit">Modifier</button><button name="delete" type="submit" form="formulaire" class="delete">Supprimer</button></li>
+</ul>
+<?php
+foreach ($receipt as $key => $value) {
+  if ($value["Terminer"] == false){
+    echo '<input type="checkbox" name="todo" value="Nom">'.$value["Nom"].'<br/>';
+  }
+  else {
+    echo '';
+  }
+}
+ ?>
+<button name="submit" type="submit" form="formulaire">Enregistrer</button>
+<h3>Archive</h3>
+<ul id="completed-tasks">
+<li><input type="checkbox" type="checkbox" name="archive" value="archive1" checked><label>Payer la facture sibelga</label><input type="text"><button name="edit" type="submit" form="formulaire" class="edit">Modifier</button><button name="delete" type="submit" form="formulaire" class="delete">Supprimer</button></li>
+</ul>
+</fieldset>
+</form>
+</div>
+</body>
+</html>

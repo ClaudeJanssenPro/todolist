@@ -8,16 +8,28 @@ http://coursesweb.net/php-mysql/add-form-data-text-file-json-format_t
 file_put_contents($file, $jsonaddtask, FILE_APPEND |LOCK_EX);
 -->
 <?php
-$file = file_get_contents('todo.json');
-$json = json_decode($file, true); // decode the JSON into an associative array
-$add_task = $_POST ['add_task'];
-if(isset($add_task)) {
-  $san_add_task = filter_var($add_task, FILTER_SANITIZE_STRING);
+if(isset($_POST['submit'])){
+
+  $options = array(
+    'add_task' => FILTER_SANITIZE_STRING
+  );
+
+  $result = filter_input_array(INPUT_POST, $options);
+  $checkresult =[];
+
+  $add_task = trim($result['add_task']);
 
 }
-$jsonaddtask = json_encode($san_add_task, JSON_FORCE_OBJECT);
-file_put_contents($file, $jsonaddtask, LOCK_EX);
-
+var_dump($add_task);
+$file = './todo.json';
+$contenu_fichier_json = file_get_contents($file);
+$reception = json_decode($contenu_fichier_json, true);
+// var_dump($reception);
+if(isset($add_task)) {
+  $reception[] = array("Nom" => $add_task, "Terminer" => false);
+  $jsonaddtask = json_encode($reception, JSON_PRETTY_PRINT);
+  file_put_contents($file, $jsonaddtask, LOCK_EX);
+}
 ?>
 <!DOCTYPE html>
 <html lang="fr">
