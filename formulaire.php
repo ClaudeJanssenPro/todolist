@@ -5,27 +5,6 @@ un petit formulaire permettant d'ajouter une tâche (un champ "textarea" et le b
 Lorsqu'on traite le formulaire il faut, après sanitization [???] et validation [???],
 stocker les tâches au format JSON dans un fichier TXT ( par exemple todo.json)
 http://coursesweb.net/php-mysql/add-form-data-text-file-json-format_t
-file_put_contents($file, $jsonaddtask, FILE_APPEND |LOCK_EX);
-
-if(isset($_POST['submit'])){
-  $contenu = file_get_contents('todo.json');
-  $contenu = json_decode($contenu,true);
-  // Changement d'array
-  $contenu['number'] = $contenu['number'] +1 ;
-  $tache = filter_var($_POST['tache'], FILTER_SANITIZE_STRING);
-  $tache = trim($tache);
-  $contenu['tache'.$contenu['number']] = $tache;
-  if (empty($tache) || !isset($tache)) {
-    $veriftaches = "pok";
-  } else {
-    $veriftaches = "ok";
-  }
-  if ($veriftaches == "ok") {
-    // Envoyer donné vers JSON
-    $var = json_encode($contenu);
-    file_put_contents('todo.json', $var);
-  }
-  }
 
 -->
 <?php
