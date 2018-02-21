@@ -6,17 +6,48 @@ Lorsqu'on traite le formulaire il faut, après sanitization [???] et validation 
 stocker les tâches au format JSON dans un fichier TXT ( par exemple todo.json)
 http://coursesweb.net/php-mysql/add-form-data-text-file-json-format_t
 file_put_contents($file, $jsonaddtask, FILE_APPEND |LOCK_EX);
+
+if(isset($_POST['submit'])){
+  $contenu = file_get_contents('todo.json');
+  $contenu = json_decode($contenu,true);
+  // Changement d'array
+  $contenu['number'] = $contenu['number'] +1 ;
+  $tache = filter_var($_POST['tache'], FILTER_SANITIZE_STRING);
+  $tache = trim($tache);
+  $contenu['tache'.$contenu['number']] = $tache;
+  if (empty($tache) || !isset($tache)) {
+    $veriftaches = "pok";
+  } else {
+    $veriftaches = "ok";
+  }
+  if ($veriftaches == "ok") {
+    // Envoyer donné vers JSON
+    $var = json_encode($contenu);
+    file_put_contents('todo.json', $var);
+  }
+  }
+
 -->
 <?php
-$file = file_get_contents('todo.json');
-$json = json_decode($file, true); // decode the JSON into an associative array
-$add_task = $_POST ['add_task'];
-if(isset($add_task)) {
-  $san_add_task = filter_var($add_task, FILTER_SANITIZE_STRING);
+if (isset($_POST['submit'])){
+  $contenu = file_get_contents('todo.json');
+  $contenu = json_decode($contenu, true);
+  // $add_task = $_POST ['add_task']; UTILE???
+  $contenu['number'] = $contenu['number'] +1 ;
+  $add_task = filter_var($_POST['add_task'], FILTER_SANITIZE_STRING);
+  $contenu['add_task'.$contenu['number']] = $add_task;
 
+  $var = json_encode($contenu);
+  file_put_contents('todo.json', $var);
+
+  if (empty($add_task) || !isset($add_task)) {
+    $veriftask = "pok";
+  } else {
+    $veriftask = "ok";
+  }
+  if ($veriftask == "ok") {
+  }
 }
-$jsonaddtask = json_encode($san_add_task, JSON_FORCE_OBJECT);
-file_put_contents($file, $jsonaddtask, LOCK_EX);
 
 ?>
 <!DOCTYPE html>
@@ -35,9 +66,9 @@ file_put_contents($file, $jsonaddtask, LOCK_EX);
     <form method="post">
       <fieldset>
       <p>
-        <label for="new_task">Ajouter une tâche</label></p>
+        <label for="add_task">Ajouter une tâche</label></p>
       <p>
-        <textarea name="add_task" id="new_task" placeholder="(ajouter ta tâche ici)" class="expanding" required autofocus></textarea>
+        <textarea name="add_task" id="add_taskz" placeholder="(ajouter ta tâche ici)" class="expanding" required autofocus></textarea>
       </p>
       <p>
         <button type="submit" name="submit">
