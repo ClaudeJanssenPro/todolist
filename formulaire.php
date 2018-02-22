@@ -20,7 +20,7 @@ if(isset($_POST['submit'])){
   $add_task = trim($result['add_task']);
 
 }
-var_dump($add_task);
+// var_dump($add_task);
 $file = './todo.json';
 $contenu_fichier_json = file_get_contents($file);
 $reception = json_decode($contenu_fichier_json, true);

@@ -51,23 +51,30 @@ $receipt = json_decode($contenu_fichier_json, true);
 <fieldset>
 <h3>A faire</h3>
 <ul id="incomplete-tasks">
-<li><input type="checkbox" name="todo" value="todo1"><label>Faire les courses</label><input type="text"><button class="edit">Modifier</button><button name="delete" type="submit" form="formulaire" class="delete">Supprimer</button></li>
-<li class="editMode"><input type="checkbox" name="todo" value="todo2"><label>Terminer le projet "QCM"</label><input type="text" value="Terminer le projet 'QCM'"><button name="edit" type="submit" form="formulaire" class="edit">Modifier</button><button name="delete" type="submit" form="formulaire" class="delete">Supprimer</button></li>
-</ul>
 <?php
 foreach ($receipt as $key => $value) {
   if ($value["Terminer"] == false){
-    echo '<input type="checkbox" name="todo" value="Nom">'.$value["Nom"].'<br/>';
+    echo '<li><input type="checkbox" name="todo" value="Nom"><label>'.$value["Nom"].'</label>'.'<input type="text"></li>'.'<br/>';
   }
   else {
     echo '';
   }
 }
  ?>
+</ul>
 <button name="submit" type="submit" form="formulaire">Enregistrer</button>
 <h3>Archive</h3>
 <ul id="completed-tasks">
-<li><input type="checkbox" type="checkbox" name="archive" value="archive1" checked><label>Payer la facture sibelga</label><input type="text"><button name="edit" type="submit" form="formulaire" class="edit">Modifier</button><button name="delete" type="submit" form="formulaire" class="delete">Supprimer</button></li>
+<?php
+foreach ($receipt as $key => $value) {
+  if ($value["Terminer"] == true){
+    echo '<li><input type="checkbox" name="archive" value="Nom" checked><label>'.$value["Nom"].'</label>'.'<input type="text"></li>'.'<br/>';
+  }
+  else {
+    echo '';
+  }
+}
+ ?>
 </ul>
 </fieldset>
 </form>

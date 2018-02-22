@@ -5,6 +5,22 @@
     },
     {
         "Nom": "Terminer Papy",
+        "Terminer": true
+    },
+    {
+        "Nom": "test0918",
         "Terminer": false
+    },
+    {
+        "Nom": "test 0945",
+        "Terminer": false
+    },
+    {
+        "Nom": "test 0946",
+        "Terminer": false
+    },
+    {
+        "Nom": "test 0946",
+        "Terminer": true
     }
 ]
