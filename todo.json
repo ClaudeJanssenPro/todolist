@@ -1,26 +1,18 @@
 [
     {
-        "Nom": "Terminer Mamy",
-        "Terminer": false
+        "taskname": "TEST1434",
+        "taskdone": false
     },
     {
-        "Nom": "Terminer Papy",
-        "Terminer": true
+        "taskname": "thisisatest",
+        "taskdone": true
     },
     {
-        "Nom": "test0918",
-        "Terminer": false
+        "taskname": "bzh",
+        "taskdone": true
     },
     {
-        "Nom": "test 0945",
-        "Terminer": false
-    },
-    {
-        "Nom": "test 0946",
-        "Terminer": false
-    },
-    {
-        "Nom": "test 0946",
-        "Terminer": true
+        "taskname": "Test1445",
+        "taskdone": false
     }
 ]
