@@ -1,26 +1,18 @@
 [
     {
-        "Nom": "Terminer Mamy",
+        "Nom": "test 1",
         "Terminer": false
     },
     {
-        "Nom": "Terminer Papy",
+        "Nom": "test 2",
+        "Terminer": false
+    },
+    {
+        "Nom": "test 3",
         "Terminer": true
     },
     {
-        "Nom": "test0918",
+        "Nom": "test 4",
         "Terminer": false
-    },
-    {
-        "Nom": "test 0945",
-        "Terminer": false
-    },
-    {
-        "Nom": "test 0946",
-        "Terminer": false
-    },
-    {
-        "Nom": "test 0946",
-        "Terminer": true
     }
 ]
