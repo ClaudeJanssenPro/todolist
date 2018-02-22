@@ -1,19 +1,3 @@
-<?php 
-if(isset($_POST['submit'])){  
-  $options = array('add_task' => FILTER_SANITIZE_STRING  );  
-  $result = filter_input_array(INPUT_POST, $options);  
-  $checkresult =[];  
-  $add_task = trim($result['add_task']);
-}
-$file = './todo.json';
-$contenu_fichier_json = file_get_contents($file);
-$reception = json_decode($contenu_fichier_json, true);
-if(isset($add_task)) {  
-  $reception[] = array("Nom" => $add_task, "Terminer" => false);  
-  $jsonaddtask = json_encode($reception, JSON_PRETTY_PRINT);  
-  file_put_contents($file, $jsonaddtask, LOCK_EX);}
-?>
-  
 <!DOCTYPE html>
 <html lang="fr">
 	<head>
@@ -27,19 +11,20 @@ if(isset($add_task)) {
 	</head>
 	<body>
 		<div class="container">
-			<form method="post">
 				<fieldset>
-					<p>
-						<label for="new_task">Ajouter une tâche</label>
-					</p>
-					<p>
-						<textarea name="add_task" id="new_task" placeholder="(ajouter ta tâche ici)" class="expanding" required autofocus></textarea>
-					</p>
-					<p>
-						<button type="submit" name="submit">Ajouter</button>
-					</p>
+					<form method="post" action="contenu.php">
+							<p>
+								<h3>Ajouter une nouvelle tache</h3>
+							</p>
+							<p>
+								<textarea name="newtask" placeholder="(ajouter ta tâche ici)" class="expanding" autofocus></textarea>
+							</p>
+							<p>
+								<button type="submit" name="submit">Ajouter</button>
+							</p>
+					</form>
 				</fieldset>
-			</form>
 		</div>
+        	</fieldset>
 	</body>
 </html>
