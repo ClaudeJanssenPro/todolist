@@ -1,7 +1,7 @@
 [
     {
         "taskname": "TEST1434",
-        "taskdone": false
+        "taskdone": true
     },
     {
         "taskname": "thisisatest",
@@ -13,6 +13,6 @@
     },
     {
         "taskname": "Test1445",
-        "taskdone": false
+        "taskdone": true
     }
 ]
