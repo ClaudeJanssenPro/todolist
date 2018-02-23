@@ -44,6 +44,12 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
+        <script type="text/javascript">
+        function ShowHideDiv(chkTask) {
+            var dvTask = document.getElementById("dvTask");
+            dvTask.style.display = chkTask.checked ? "block" : "none";
+        }
+        </script>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -57,18 +63,22 @@
                         
                         <h3>A faire</h3>
                         <ul id="incomplete-tasks">
-                <?php 
-                    foreach ($receipt as $key => $value) {  
-                        if ($value["Terminer"] == false){
+                        <label for="chkTask">
+                            <?php 
+                                foreach ($receipt as $key => $value) {  
+                                    if ($value["Terminer"] == false){
 
-                            echo "<li><input type='checkbox' name='newtask[]' value='".$value["taskname"]."'/>
-                                <label for='choice'>".$value["taskname"]."</label></li><br />"; 
-                        }
-                    } 
-                ?>
-                        </ul>
-                        <button class="save" name="save" type="submit">Enregistrer</button>
+                                        echo "<li><input id='chkTask' onclick='ShowHideDiv(this)' type='checkbox' name='newtask[]' value='".$value["taskname"]."'/>
+                                        <label for='choice'>".$value["taskname"]."</label></li><br />"; 
+                                    }
+                                } 
+                            ?>
+                        </label>
+                        <div id="dvTask" style="display: none">
+                            <button class="save" name="save" type="submit">Enregistrer</button>
+                        </div>
                 </form>
+
                 <form action="contenu.php" method="POST">
 
                         <h3>Archive</h3>
