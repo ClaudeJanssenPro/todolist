@@ -3,7 +3,7 @@
     $filename="todo.json";
     $content_json = file_get_contents($filename);
     $receipt = json_decode($content_json, true);
-
+    
     // bouton ajouter
     if (isset($_POST['submit']) AND end($receipt)['taskname'] != $_POST['newtask']){
         $add_task = $_POST['newtask'];
@@ -14,7 +14,7 @@
         file_put_contents($filename, $json);
         $receipt = json_decode($json, true);
     }
-
+    
     // bouton enregistrer
     if (isset($_POST['save'])){
         $choice=$_POST['newtask'];
@@ -54,44 +54,42 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 		<link rel="stylesheet" href="style.css" type="text/css" charset="utf-8" />
-    <script src="dragndrop.js" charset="utf-8"></script>
 		<title>To do</title>
 	</head>
     <body>
             <div class="container">
             <fieldset>
-                <form action="home.php" method="POST">
-
+                <form action="contenu.php" method="POST">
+                        
                         <h3>A faire</h3>
-                        <ul id="incomplete_tasks">
+                        <ul id="incomplete-tasks">
                         <label for="chkTask">
-                            <?php
-                                foreach ($receipt as $key => $value) {
+                            <?php 
+                                foreach ($receipt as $key => $value) {  
                                     if ($value["Terminer"] == false){
 
-                                        echo "<li class='droppable' draggable='true'><input id='chkTask' onclick='ShowHideDiv(this)' type='checkbox' name='newtask[]' value='".$value["taskname"]."'/>
-                                        <label for='choice'>".$value["taskname"]."</label></li><br />";
+                                        echo "<li><input id='chkTask' onclick='ShowHideDiv(this)' type='checkbox' name='newtask[]' value='".$value["taskname"]."'/>
+                                        <label for='choice'>".$value["taskname"]."</label></li><br />"; 
                                     }
-                                }
+                                } 
                             ?>
                         </label>
-                        </ul>
                         <div id="dvTask" style="display: none">
                             <button class="save" name="save" type="submit">Enregistrer</button>
                         </div>
                 </form>
 
-                <form action="home.php" method="POST">
+                <form action="contenu.php" method="POST">
 
                         <h3>Archive</h3>
-                        <ul id="completed_tasks">
-                <?php
-                    foreach ($receipt as $key => $value) {
+                        <ul id="completed-tasks">
+                <?php 
+                    foreach ($receipt as $key => $value) {  
                         if ($value["Terminer"] == true){
                             echo "<li><input type='checkbox' name='removetask[]' value='".$value["taskname"]."'checked/>
-                                <label for='choice'>".$value["taskname"]."</label></li><br />";
+                                <label for='choice'>".$value["taskname"]."</label></li><br />";  
                         }
-                    }
+                    } 
                 ?>
                         </ul>
                             <button class="unsave" name="unsave" type="submit">Retirer</button>
@@ -101,7 +99,7 @@
 
             <div class="container">
             <fieldset>
-                <form method="post" action="home.php">
+                <form method="post" action="contenu.php">
                         <p>
                             <h3>Ajouter une nouvelle tache</h3>
                         </p>

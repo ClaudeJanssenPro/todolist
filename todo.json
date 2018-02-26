@@ -1,14 +1,10 @@
 [
     {
-        "taskname": "test8012",
+        "taskname": "slaut 1",
         "Terminer": false
     },
     {
-        "taskname": "drag",
-        "Terminer": false
-    },
-    {
-        "taskname": "drop",
+        "taskname": "salut 2",
         "Terminer": false
     }
 ]
