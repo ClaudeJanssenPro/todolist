@@ -104,7 +104,7 @@ li > .delete:hover {
 }
 
 /* Completed */
-#completed-tasks label {
+#completed_tasks label {
   text-decoration: line-through;
   color: #888;
 }
@@ -121,3 +121,27 @@ ul li.editMode input[type=text] {
 ul li.editMode label {
   display:none;
 }
+/* START DRAGnDROP */
+[draggable] {
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  /* Required to make elements draggable in old WebKit */
+  -khtml-user-drag: element;
+  -webkit-user-drag: element;
+}
+
+#incomplete_tasks {
+  list-style-type: none;
+}
+
+.droppable {
+  /* width: 162px; */
+  padding-bottom: 5px;
+  padding-top: 5px;
+  text-align: center;
+  cursor: move;
+}
+
+/* END DRAGnDROP */
